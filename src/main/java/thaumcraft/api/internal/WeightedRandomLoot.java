@@ -1,0 +1,22 @@
+package thaumcraft.api.internal;
+
+import java.util.ArrayList;
+
+import net.minecraft.util.random.WeightedEntry;
+import net.minecraft.world.item.ItemStack;
+
+public class WeightedRandomLoot extends WeightedEntry.IntrusiveBase {
+
+    /** The item to generate in the bag. */
+    public ItemStack item;
+
+    public WeightedRandomLoot(ItemStack stack, int weight) {
+        super(weight);
+        this.item = stack;
+    }
+
+    public static ArrayList<WeightedRandomLoot> lootBagCommon = new ArrayList<>();
+    public static ArrayList<WeightedRandomLoot> lootBagUncommon = new ArrayList<>();
+    public static ArrayList<WeightedRandomLoot> lootBagRare = new ArrayList<>();
+
+}

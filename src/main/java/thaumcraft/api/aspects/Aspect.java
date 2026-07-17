@@ -39,8 +39,8 @@ public class Aspect {
         this.image = image;
         this.blend = blend;
         aspects.put(tag, this);
-        // TODO(port/Phase 3): register a ScanAspect with the ScanningManager once the
-        // research package is ported, mirroring the 1.12.2 behaviour.
+        thaumcraft.api.research.ScanningManager.addScannableThing(
+                new thaumcraft.api.research.ScanAspect("!" + tag, this));
         if (components != null) {
             int h = (components[0].getTag() + components[1].getTag()).hashCode();
             mixList.put(h, this);
