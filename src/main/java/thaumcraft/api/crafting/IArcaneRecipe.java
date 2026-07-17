@@ -13,4 +13,7 @@ public interface IArcaneRecipe extends Recipe<CraftingInput>, IThaumcraftRecipe 
     int getVis();
 
     AspectList getCrystals();
+
+    @Override
+    String getGroup();
 }
