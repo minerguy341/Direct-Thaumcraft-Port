@@ -25,6 +25,11 @@ SPECIAL = {
     "item.thaumonomicon.normal.name": "item.thaumcraft.thaumonomicon",
 }
 
+# potion.<x> -> effect.thaumcraft.<x> (mob effects use effect.* keys in modern MC)
+PREFIX_MAP_EXTRA = [
+    (re.compile(r"^potion\.(.+)$"), "effect.thaumcraft.{}"),
+]
+
 # extra keys injected into every locale (value per locale falls back to en_us)
 EXTRA = {
     "itemGroup.thaumcraft": {"en_us": "Thaumcraft", "*": "Thaumcraft"},
@@ -41,6 +46,10 @@ def convert_key(key: str) -> str:
     if key in SPECIAL:
         return SPECIAL[key]
     for pattern, template in PREFIX_MAP:
+        m = pattern.match(key)
+        if m:
+            return template.format(m.group(1).replace(".", "_"))
+    for pattern, template in PREFIX_MAP_EXTRA:
         m = pattern.match(key)
         if m:
             return template.format(m.group(1).replace(".", "_"))
