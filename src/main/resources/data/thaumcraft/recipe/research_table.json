@@ -1,0 +1,16 @@
+{
+  "type": "thaumcraft:shaped_arcane",
+  "research": "",
+  "vis": 10,
+  "pattern": [
+    "PSP",
+    "PPP"
+  ],
+  "key": {
+    "P": {"tag": "minecraft:planks"},
+    "S": {"item": "thaumcraft:scribing_tools"}
+  },
+  "result": {
+    "id": "thaumcraft:research_table"
+  }
+}

@@ -39,7 +39,10 @@ public final class ModBlocks {
             registerCustom("crucible", () -> new thaumcraft.common.blocks.CrucibleBlock(
                     BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
                             .strength(3.0F).sound(SoundType.METAL).noOcclusion()));
-    public static final DeferredBlock<Block> ARCANE_WORKBENCH = wood("arcane_workbench");
+    public static final DeferredBlock<thaumcraft.common.blocks.ArcaneWorkbenchBlock> ARCANE_WORKBENCH =
+            registerCustom("arcane_workbench", () -> new thaumcraft.common.blocks.ArcaneWorkbenchBlock(
+                    BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
+                            .strength(2.0F).sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> RESEARCH_TABLE = wood("research_table");
     public static final DeferredBlock<Block> PEDESTAL_ARCANE = register("pedestal_arcane",
             BlockBehaviour.Properties.of().mapColor(MapColor.STONE)

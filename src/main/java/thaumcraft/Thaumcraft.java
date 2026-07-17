@@ -28,6 +28,9 @@ public class Thaumcraft {
         ModEffects.EFFECTS.register(modEventBus);
         ModAttachments.ATTACHMENTS.register(modEventBus);
         thaumcraft.common.init.ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        thaumcraft.common.init.ModMenus.MENUS.register(modEventBus);
+        thaumcraft.common.init.ModRecipeTypes.RECIPE_TYPES.register(modEventBus);
+        thaumcraft.common.init.ModRecipeTypes.SERIALIZERS.register(modEventBus);
         modEventBus.addListener(ModDataMaps::register);
         modEventBus.addListener(thaumcraft.common.network.ModNetwork::register);
         modEventBus.addListener(thaumcraft.common.lib.ThaumcraftContent::init);
