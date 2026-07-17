@@ -7,7 +7,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import thaumcraft.api.aspects.AspectEventProxy;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.IThaumcraftRecipe;
+import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.crafting.Part;
 import thaumcraft.api.internal.CommonInternals;
 import thaumcraft.api.internal.DummyInternalMethodHandler;
@@ -97,6 +99,59 @@ public class ThaumcraftApi {
      */
     public static void addMultiblockRecipeToCatalog(ResourceLocation registry, BluePrint recipe) {
         getCraftingRecipes().put(registry, recipe);
+    }
+
+    /**
+     * @param registry unique identifier for this recipe used by thaumonomicon to link a recipe to research.
+     * Recipes grouped under the same name will be displayed under one bookmark in thaumonomicon.
+     */
+    public static void addCrucibleRecipe(ResourceLocation registry, CrucibleRecipe recipe) {
+        getCraftingRecipes().put(registry, recipe);
+    }
+
+    /**
+     * @param stack the recipe result
+     * @return the recipe
+     */
+    public static CrucibleRecipe getCrucibleRecipe(ItemStack stack) {
+        for (Object r : getCraftingRecipes().values()) {
+            if (r instanceof CrucibleRecipe cr && ItemStack.isSameItem(cr.getRecipeOutput(), stack)) {
+                return cr;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param hash the unique recipe code
+     * @return the recipe
+     */
+    public static CrucibleRecipe getCrucibleRecipeFromHash(int hash) {
+        for (Object recipe : getCraftingRecipes().values()) {
+            if (recipe instanceof CrucibleRecipe cr && cr.hash == hash) return cr;
+        }
+        return null;
+    }
+
+    /**
+     * @param registry unique identifier for this recipe used by thaumonomicon to link a recipe to research.
+     */
+    public static void addInfusionCraftingRecipe(ResourceLocation registry, InfusionRecipe recipe) {
+        getCraftingRecipes().put(registry, recipe);
+    }
+
+    /**
+     * @param res the recipe result
+     * @return the recipe
+     */
+    public static InfusionRecipe getInfusionRecipe(ItemStack res) {
+        for (Object r : getCraftingRecipes().values()) {
+            if (r instanceof InfusionRecipe ir && ir.getRecipeOutput() instanceof ItemStack stack
+                    && ItemStack.isSameItem(stack, res)) {
+                return ir;
+            }
+        }
+        return null;
     }
 
     public static class BluePrint implements IThaumcraftRecipe {
