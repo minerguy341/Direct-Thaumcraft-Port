@@ -42,7 +42,8 @@ public class PlayerWarp implements IPlayerWarp {
 
     @Override
     public void sync(ServerPlayer player) {
-        // TODO(networking phase): sync warp totals to the client.
+        net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player,
+                new thaumcraft.common.network.WarpSyncPayload(serializeNBT(player.registryAccess())));
     }
 
     @Override

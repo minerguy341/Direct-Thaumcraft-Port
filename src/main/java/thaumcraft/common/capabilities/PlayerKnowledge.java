@@ -138,7 +138,8 @@ public class PlayerKnowledge implements IPlayerKnowledge {
 
     @Override
     public void sync(ServerPlayer player) {
-        // TODO(networking phase): delta-sync knowledge + research to the client.
+        net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player,
+                new thaumcraft.common.network.KnowledgeSyncPayload(serializeNBT(player.registryAccess())));
     }
 
     @Override

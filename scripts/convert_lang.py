@@ -33,6 +33,7 @@ PREFIX_MAP_EXTRA = [
 # extra keys injected into every locale (value per locale falls back to en_us)
 EXTRA = {
     "itemGroup.thaumcraft": {"en_us": "Thaumcraft", "*": "Thaumcraft"},
+    "tc.aspects.shift": {"en_us": "Hold Shift for aspects", "*": "Hold Shift for aspects"},
 }
 
 PREFIX_MAP = [

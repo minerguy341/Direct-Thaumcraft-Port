@@ -1299,6 +1299,7 @@
   "tc.aspect.vitium": "Taint, Change, Mutation",
   "tc.aspect.vitreus": "Crystal, Glass, Clear",
   "tc.aspect.volatus": "Flight",
+  "tc.aspects.shift": "Hold Shift for aspects",
   "tc.boss.crimson": "A ruby portal opens nearby, heralding the arrival of the Crimson Cult. You must close the portal quickly!",
   "tc.boss.enrage": "is enraged by your powerful blows.",
   "tc.boss.golem": "A lone sentinel stands frozen in this room, but as energy starts crackling through its ancient frame, you know it will not stay frozen for long.",

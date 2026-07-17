@@ -38,13 +38,17 @@ public class ThaumcraftInternalMethods extends DummyInternalMethodHandler {
         if (override != null) return override;
 
         AspectList mapped = is.getItemHolder().getData(ModDataMaps.ITEM_ASPECTS);
-        return mapped != null ? mapped.copy() : null;
+        if (mapped != null) return mapped.copy();
+
+        AspectList inferred = AspectInference.getInferred(is.getItem());
+        return inferred != null ? inferred.copy() : null;
     }
 
     @Override
     public AspectList generateTags(ItemStack is) {
-        // TODO(Phase 3): recipe-derived aspect inference at recipe-manager reload.
-        return null;
+        if (is == null || is.isEmpty()) return null;
+        AspectList inferred = AspectInference.getInferred(is.getItem());
+        return inferred != null ? inferred.copy() : null;
     }
 
     @Override
