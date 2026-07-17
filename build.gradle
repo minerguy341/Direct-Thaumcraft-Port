@@ -1,0 +1,53 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.142'
+}
+
+version = project.mod_version
+group = 'io.github.minerguy341.thaumcraft'
+base.archivesName = 'direct-thaumcraft-port'
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        data {
+            data()
+            programArguments.addAll '--mod', 'thaumcraft', '--all',
+                    '--output', file('src/generated/resources/').absolutePath,
+                    '--existing', file('src/main/resources/').absolutePath
+        }
+    }
+
+    mods {
+        thaumcraft {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+sourceSets.main.resources.srcDir 'src/generated/resources'
+
+processResources {
+    var replaceProperties = [
+            mod_version      : project.mod_version,
+            minecraft_version: project.minecraft_version,
+            neo_version      : project.neo_version,
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties
+    }
+}
