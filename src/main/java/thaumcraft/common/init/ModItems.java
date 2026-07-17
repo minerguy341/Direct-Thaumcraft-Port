@@ -32,9 +32,10 @@ public final class ModItems {
     public static final DeferredItem<Item> NUGGET_VOID = simple("nugget_void");
     public static final DeferredItem<Item> NUGGET_QUICKSILVER = simple("nugget_quicksilver");
 
-    // tools of the trade (plain items until their systems land)
+    // tools of the trade
     public static final DeferredItem<Item> THAUMOMETER =
-            ITEMS.registerSimpleItem("thaumometer", new Item.Properties().stacksTo(1));
+            ITEMS.register("thaumometer",
+                    () -> new thaumcraft.common.items.ThaumometerItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> SCRIBING_TOOLS =
             ITEMS.registerSimpleItem("scribing_tools", new Item.Properties().stacksTo(1).durability(64));
 

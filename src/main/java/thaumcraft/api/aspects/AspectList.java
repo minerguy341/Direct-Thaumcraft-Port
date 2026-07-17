@@ -2,6 +2,9 @@ package thaumcraft.api.aspects;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
+import java.util.Map;
+
+import com.mojang.serialization.Codec;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -9,6 +12,26 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 
 public class AspectList implements Serializable {
+
+    /**
+     * JSON/network form: a map of aspect tag to amount, e.g. {"terra": 1, "perditio": 1}.
+     * Unknown aspect tags are skipped rather than failing the whole list.
+     */
+    public static final Codec<AspectList> CODEC =
+            Codec.unboundedMap(Codec.STRING, Codec.INT).xmap(map -> {
+                AspectList list = new AspectList();
+                for (Map.Entry<String, Integer> e : map.entrySet()) {
+                    Aspect aspect = Aspect.getAspect(e.getKey());
+                    if (aspect != null) list.add(aspect, e.getValue());
+                }
+                return list;
+            }, list -> {
+                Map<String, Integer> map = new LinkedHashMap<>();
+                for (Aspect aspect : list.getAspects()) {
+                    map.put(aspect.getTag(), list.getAmount(aspect));
+                }
+                return map;
+            });
 
     public LinkedHashMap<Aspect, Integer> aspects = new LinkedHashMap<>();
 
