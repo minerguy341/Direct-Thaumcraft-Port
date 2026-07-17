@@ -18,7 +18,7 @@ public final class ModCreativeTabs {
                     .title(Component.translatable("itemGroup.thaumcraft"))
                     .icon(() -> new ItemStack(ModItems.THAUMONOMICON.get()))
                     .displayItems((parameters, output) -> {
-                        output.accept(ModItems.THAUMONOMICON.get());
+                        ModItems.ITEMS.getEntries().forEach(entry -> output.accept(entry.get()));
                     })
                     .build());
 
