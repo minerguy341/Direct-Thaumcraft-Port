@@ -27,8 +27,10 @@ public class Thaumcraft {
         ModCreativeTabs.TABS.register(modEventBus);
         ModEffects.EFFECTS.register(modEventBus);
         ModAttachments.ATTACHMENTS.register(modEventBus);
+        thaumcraft.common.init.ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         modEventBus.addListener(ModDataMaps::register);
         modEventBus.addListener(thaumcraft.common.network.ModNetwork::register);
+        modEventBus.addListener(thaumcraft.common.lib.ThaumcraftContent::init);
 
         ThaumcraftApi.internalMethods = new ThaumcraftInternalMethods();
         ThaumcraftCapabilities.KNOWLEDGE =

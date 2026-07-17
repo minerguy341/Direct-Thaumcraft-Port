@@ -34,10 +34,11 @@ public final class ModBlocks {
     public static final DeferredBlock<LeavesBlock> LEAVES_GREATWOOD = leaves("leaves_greatwood");
     public static final DeferredBlock<LeavesBlock> LEAVES_SILVERWOOD = leaves("leaves_silverwood");
 
-    // stations (plain placeholder blocks until their block entities land)
-    public static final DeferredBlock<Block> CRUCIBLE = register("crucible",
-            BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
-                    .strength(3.0F).sound(SoundType.METAL).noOcclusion());
+    // stations
+    public static final DeferredBlock<thaumcraft.common.blocks.CrucibleBlock> CRUCIBLE =
+            registerCustom("crucible", () -> new thaumcraft.common.blocks.CrucibleBlock(
+                    BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
+                            .strength(3.0F).sound(SoundType.METAL).noOcclusion()));
     public static final DeferredBlock<Block> ARCANE_WORKBENCH = wood("arcane_workbench");
     public static final DeferredBlock<Block> RESEARCH_TABLE = wood("research_table");
     public static final DeferredBlock<Block> PEDESTAL_ARCANE = register("pedestal_arcane",
@@ -46,6 +47,12 @@ public final class ModBlocks {
 
     private static DeferredBlock<Block> register(String name, BlockBehaviour.Properties props) {
         DeferredBlock<Block> block = BLOCKS.registerSimpleBlock(name, props);
+        ModItems.ITEMS.registerSimpleBlockItem(block);
+        return block;
+    }
+
+    private static <T extends Block> DeferredBlock<T> registerCustom(String name, java.util.function.Supplier<T> supplier) {
+        DeferredBlock<T> block = BLOCKS.register(name, supplier);
         ModItems.ITEMS.registerSimpleBlockItem(block);
         return block;
     }

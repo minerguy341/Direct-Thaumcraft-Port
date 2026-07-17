@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "full=false": {
+      "model": "thaumcraft:block/crucible"
+    },
+    "full=true": {
       "model": "thaumcraft:block/crucible"
     }
   }

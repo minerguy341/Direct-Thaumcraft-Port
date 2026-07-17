@@ -160,6 +160,8 @@ def main():
                 "axis=x": {"model": model, "x": 90, "y": 90},
                 "axis=z": {"model": model, "x": 90},
             }
+        elif name == "crucible":
+            variants = {"full=false": {"model": model}, "full=true": {"model": model}}
         else:
             variants = {"": {"model": model}}
         write(ASSETS / "blockstates" / f"{name}.json", {"variants": variants})

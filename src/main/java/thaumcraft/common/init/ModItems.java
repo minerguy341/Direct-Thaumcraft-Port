@@ -13,7 +13,9 @@ public final class ModItems {
             ITEMS.registerSimpleItem("thaumonomicon", new Item.Properties().stacksTo(1));
 
     // core materials
-    public static final DeferredItem<Item> SALIS_MUNDUS = simple("salis_mundus");
+    public static final DeferredItem<Item> SALIS_MUNDUS =
+            ITEMS.register("salis_mundus",
+                    () -> new thaumcraft.common.items.SalisMundusItem(new Item.Properties()));
     public static final DeferredItem<Item> AMBER = simple("amber");
     public static final DeferredItem<Item> QUICKSILVER = simple("quicksilver");
     public static final DeferredItem<Item> TALLOW = simple("tallow");
